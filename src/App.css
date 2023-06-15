@@ -1,38 +1,116 @@
-.App {
-  text-align: center;
+img {
+  width: 90px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+span {
+  font-size: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.card-heading {
+  font-size: 25px;
+  font-weight: bold;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.image-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  height: 200px;
+}
+
+.card-input {
+  height: 100%;
+  padding: 20px;
+}
+
+button {
+  background-color: green;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.button-paragraph-container {
+  display: flex;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.button-paragraph-container button {
+  margin-right: 10px;
+}
+
+.button-paragraph-container p {
+  margin-top: 12px;
+}
+
+.active-paragraph {
+  color: blue;
+  position: relative;
+  font-style: bold;
+}
+
+.active-paragraph::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  border-bottom: 2px solid blue;
+}
+
+.horizontal-stack {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.horizontal-stack p {
+  margin-right: 10px;
+}
+
+.discount-percentage {
+  color: green;
+}
+
+.sort-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+
+}
+
+.price-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 767px) {
+  .sort-container {
+    flex-direction: column;
+    align-items: flex-center;
   }
-  to {
-    transform: rotate(360deg);
+
+  .price-container {
+    flex-direction: row;
+    align-items: center;
   }
+
+  .price-container p {
+    margin-right: 10px;
+  }
+}
+
+.slider-container {
+  width: 300px;
+}
+
+.range-text {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.grab-cursor {
+  cursor: grab;
 }
