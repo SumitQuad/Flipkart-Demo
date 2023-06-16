@@ -25,6 +25,7 @@ function App() {
       id: 1,
       name: "Whirlpool 7 kg Magic Clean 5 Star Fully Automatic Top Load Washing Machine Grey  (MAGIC CLEAN 7.0 GENX GREY 5YMW)",
       price: 14990,
+      brand: "Whirlpool",
       originalprice: 16990,
       rating: "5.0",
       speed: "740 rpm Max Speed",
@@ -37,8 +38,9 @@ function App() {
     },
     {
       id: 2,
-      name: "Whirlpool 7 kg Magic Clean 5 Star Fully Automatic Top Load Washing Machine Grey  (MAGIC CLEAN 7.0 GENX GREY 5YMW)",
+      name: "Samsung 7 kg Magic Clean 5 Star Fully Automatic Top Load Washing Machine Grey  (MAGIC CLEAN 7.0 GENX GREY 5YMW)",
       price: 15990,
+      brand: "Samsung",
       originalprice: 16990,
       rating: "4.3",
       speed: "740 rpm Max Speed",
@@ -51,8 +53,9 @@ function App() {
     },
     {
       id: 3,
-      name: "Whirlpool 7 kg Magic Clean 5 Star Fully Automatic Top Load Washing Machine Grey  (MAGIC CLEAN 7.0 GENX GREY 5YMW)",
+      name: "LG 7 kg Magic Clean 5 Star Fully Automatic Top Load Washing Machine Grey  (MAGIC CLEAN 7.0 GENX GREY 5YMW)",
       price: 12290,
+      brand: "LG",
       originalprice: 14990,
       rating: "4.4",
       speed: "740 rpm Max Speed",
@@ -65,8 +68,9 @@ function App() {
     },
     {
       id: 4,
-      name: "Whirlpool 7 kg Magic Clean 5 Star Fully Automatic Top Load Washing Machine Grey  (MAGIC CLEAN 7.0 GENX GREY 5YMW)",
+      name: "IFB 7 kg Magic Clean 5 Star Fully Automatic Top Load Washing Machine Grey  (MAGIC CLEAN 7.0 GENX GREY 5YMW)",
       price: 14990,
+      brand: "IFB",
       rating: "4.5",
       item: "new",
       speed: "740 rpm Max Speed",
@@ -78,8 +82,9 @@ function App() {
     },
     {
       id: 5,
-      name: "Whirlpool 7 kg Magic Clean 5 Star Fully Automatic Top Load Washing Machine Grey  (MAGIC CLEAN 7.0 GENX GREY 5YMW)",
+      name: "Panasonic 7 kg Magic Clean 5 Star Fully Automatic Top Load Washing Machine Grey  (MAGIC CLEAN 7.0 GENX GREY 5YMW)",
       price: 6790,
+      brand: "Panasonic",
       rating: "4.6",
       speed: "740 rpm Max Speed",
       warranty: "2 Years Comprehensive Warranty on Product and 5 Years on Prime Mover and Moto",
@@ -92,6 +97,7 @@ function App() {
       id: 6,
       name: "Whirlpool 7 kg Magic Clean 5 Star Fully Automatic Top Load Washing Machine Grey  (MAGIC CLEAN 7.0 GENX GREY 5YMW)",
       price: 16990,
+      brand: "Whirlpool",
       rating: "3.2",
       speed: "740 rpm Max Speed",
       warranty: "2 Years Comprehensive Warranty on Product and 5 Years on Prime Mover and Moto",
@@ -104,6 +110,7 @@ function App() {
       id: 7,
       name: "Whirlpool 7 kg Magic Clean 5 Star Fully Automatic Top Load Washing Machine Grey  (MAGIC CLEAN 7.0 GENX GREY 5YMW)",
       price: 16990,
+      brand: "Whirlpool",
       rating: "3.2",
       speed: "740 rpm Max Speed",
       warranty: "2 Years Comprehensive Warranty on Product and 5 Years on Prime Mover and Moto",
@@ -114,8 +121,9 @@ function App() {
     },
     {
       id: 8,
-      name: "Whirlpool 7 kg Magic Clean 5 Star Fully Automatic Top Load Washing Machine Grey  (MAGIC CLEAN 7.0 GENX GREY 5YMW)",
+      name: "Lg 7 kg Magic Clean 5 Star Fully Automatic Top Load Washing Machine Grey  (MAGIC CLEAN 7.0 GENX GREY 5YMW)",
       price: 16990,
+      brand: "LG",
       rating: "2.1",
       speed: "740 rpm Max Speed",
       warranty: "2 Years Comprehensive Warranty on Product and 5 Years on Prime Mover and Moto",
@@ -126,8 +134,9 @@ function App() {
     },
     {
       id: 9,
-      name: "Whirlpool 7 kg Magic Clean 5 Star Fully Automatic Top Load Washing Machine Grey  (MAGIC CLEAN 7.0 GENX GREY 5YMW)",
+      name: "IFB 7 kg Magic Clean 5 Star Fully Automatic Top Load Washing Machine Grey  (MAGIC CLEAN 7.0 GENX GREY 5YMW)",
       price: 16990,
+      brand: "IFB",
       rating: "1.2",
       speed: "740 rpm Max Speed",
       warranty: "2 Years Comprehensive Warranty on Product and 5 Years on Prime Mover and Moto",
@@ -136,7 +145,6 @@ function App() {
       imagestwo: fassured,
       reviews: "5458 rating and 261 reviews"
     },
-
   ]
 
   const [minValue, setMinValue] = useState(0);
@@ -149,6 +157,8 @@ function App() {
   const [value, setValue] = React.useState([0, 30000]);
   const [selectedRatings, setSelectedRatings] = useState([]);
   const [showDiscounted, setShowDiscounted] = useState(false);
+  const [selectedBrands, setSelectedBrands] = useState([]);
+
 
 
   const handleRatingFilterChange = (rating) => {
@@ -158,6 +168,16 @@ function App() {
       setSelectedRatings([...selectedRatings, rating]);
     }
   };
+
+  const handleBrandFilterChange = (brand) => {
+    if (selectedBrands.includes(brand)) {
+      setSelectedBrands(selectedBrands.filter((b) => b !== brand));
+    }
+    else {
+      setSelectedBrands([...selectedBrands, brand]);
+    }
+  };
+
 
   const calculateDiscountPercentage = (actualPrice, originalPrice) => {
     if (originalPrice) {
@@ -184,6 +204,12 @@ function App() {
         );
       }
 
+      if (selectedBrands.length > 0) {
+        updatedList = updatedList.filter((data) =>
+          selectedBrands.includes(data.brand)
+        );
+      }
+
       if (selectedRatings.length > 0) {
         const selectedRatingValue = Math.min(...selectedRatings.map((rating) => parseInt(rating)));
 
@@ -191,8 +217,6 @@ function App() {
           parseInt(data.rating.charAt(0)) >= selectedRatingValue
         );
       }
-
-
     }
 
     setFilteredWashingMachines(updatedList);
@@ -243,7 +267,7 @@ function App() {
 
   useEffect(() => {
     applyFilter();
-  }, [minValue, maxValue, selectedRatings]);
+  }, [minValue, maxValue, selectedRatings, selectedBrands]);
 
 
   return (
@@ -317,29 +341,54 @@ function App() {
               <div style={{ marginTop: "40px" }}>
                 <h6>Brand</h6>
                 <label>
-                  <input type="checkbox" style={{ marginRight: "10px" }} />
+                  <input
+                    type="checkbox"
+                    style={{ marginRight: "10px" }}
+                    onChange={() => handleBrandFilterChange("Samsung")}
+                  />
                   SAMSUNG
-                </label> <br />
+                </label>
+                <br />
 
                 <label>
-                  <input type="checkbox" style={{ marginRight: "10px" }} />
+                  <input
+                    type="checkbox"
+                    style={{ marginRight: "10px" }}
+                    onChange={() => handleBrandFilterChange("LG")}
+                  />
                   LG
-                </label> <br />
+                </label>
+                <br />
 
                 <label>
-                  <input type="checkbox" style={{ marginRight: "10px" }} />
+                  <input
+                    type="checkbox"
+                    style={{ marginRight: "10px" }}
+                    onChange={() => handleBrandFilterChange("Whirlpool")}
+                  />
                   Whirlpool
-                </label> <br />
+                </label>
+                <br />
 
                 <label>
-                  <input type="checkbox" style={{ marginRight: "10px" }} />
+                  <input
+                    type="checkbox"
+                    style={{ marginRight: "10px" }}
+                    onChange={() => handleBrandFilterChange("IFB")}
+                  />
                   IFB
-                </label> <br />
+                </label>
+                <br />
 
                 <label>
-                  <input type="checkbox" style={{ marginRight: "10px" }} />
+                  <input
+                    type="checkbox"
+                    style={{ marginRight: "10px" }}
+                    onChange={() => handleBrandFilterChange("Panasonic")}
+                  />
                   PANASONIC
-                </label> <br />
+                </label>
+                <br />
               </div>
 
               <div style={{ marginTop: "40px" }}>
