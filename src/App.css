@@ -99,6 +99,11 @@ button {
   gap: 15px;
 }
 
+/* Cursor style for grab */
+.grab-cursor {
+  cursor: pointer;
+}
+
 /* Media query for smaller screens */
 @media (max-width: 767px) {
 
@@ -134,5 +139,5 @@ button {
 
 /* Cursor style for grab */
 .grab-cursor {
-  cursor: grab;
+  cursor: pointer;
 }

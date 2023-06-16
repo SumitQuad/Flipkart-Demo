@@ -382,11 +382,12 @@ function App() {
                 {/* <p className="range-text">Min: {minValue} - Max: {maxValue}</p> */}
               </div>
 
-              <div style={{ marginTop: "20px" }}>
+              <div className="grab-cursor" style={{ marginTop: "20px" }}>
                 <h6>Ideal For Family Size</h6>
                 <label>
                   <input
                     type="checkbox"
+                    className="grab-cursor"
                     style={{ marginRight: "10px" }}
                     checked={selectedFamilySizes.includes("Large Families")}
                     onChange={() => handleFamilySizeFilterChange("Large Families")}
@@ -398,6 +399,7 @@ function App() {
                 <label>
                   <input
                     type="checkbox"
+                    className="grab-cursor"
                     style={{ marginRight: "10px" }}
                     checked={selectedFamilySizes.includes("Family of 4")}
                     onChange={() => handleFamilySizeFilterChange("Family of 4")}
@@ -409,6 +411,7 @@ function App() {
                 <label>
                   <input
                     type="checkbox"
+                    className="grab-cursor"
                     style={{ marginRight: "10px" }}
                     checked={selectedFamilySizes.includes("Family of 3")}
                     onChange={() => handleFamilySizeFilterChange("Family of 3")}
@@ -420,6 +423,7 @@ function App() {
                 <label>
                   <input
                     type="checkbox"
+                    className="grab-cursor"
                     style={{ marginRight: "10px" }}
                     checked={selectedFamilySizes.includes("Single Couple")}
                     onChange={() => handleFamilySizeFilterChange("Single Couple")}
@@ -435,6 +439,7 @@ function App() {
                 <label>
                   <input
                     type="checkbox"
+                    className="grab-cursor"
                     style={{ marginRight: "10px" }}
                     onChange={() => handleBrandFilterChange("Samsung")}
                   />
@@ -445,6 +450,7 @@ function App() {
                 <label>
                   <input
                     type="checkbox"
+                    className="grab-cursor"
                     style={{ marginRight: "10px" }}
                     onChange={() => handleBrandFilterChange("LG")}
                   />
@@ -455,6 +461,7 @@ function App() {
                 <label>
                   <input
                     type="checkbox"
+                    className="grab-cursor"
                     style={{ marginRight: "10px" }}
                     onChange={() => handleBrandFilterChange("Whirlpool")}
                   />
@@ -465,6 +472,7 @@ function App() {
                 <label>
                   <input
                     type="checkbox"
+                    className="grab-cursor"
                     style={{ marginRight: "10px" }}
                     onChange={() => handleBrandFilterChange("IFB")}
                   />
@@ -475,6 +483,7 @@ function App() {
                 <label>
                   <input
                     type="checkbox"
+                    className="grab-cursor"
                     style={{ marginRight: "10px" }}
                     onChange={() => handleBrandFilterChange("Panasonic")}
                   />
@@ -488,6 +497,7 @@ function App() {
                 <label>
                   <input
                     type="checkbox"
+                    className="grab-cursor"
                     style={{ marginRight: "10px" }}
                     checked={selectedRatings.includes("5")}
                     onChange={() => handleRatingFilterChange("5")}
@@ -497,6 +507,7 @@ function App() {
                 <label>
                   <input
                     type="checkbox"
+                    className="grab-cursor"
                     style={{ marginRight: "10px" }}
                     checked={selectedRatings.includes("4")}
                     onChange={() => handleRatingFilterChange("4")}
@@ -507,6 +518,7 @@ function App() {
                 <label>
                   <input
                     type="checkbox"
+                    className="grab-cursor"
                     style={{ marginRight: "10px" }}
                     checked={selectedRatings.includes("3")}
                     onChange={() => handleRatingFilterChange("3")}
@@ -517,6 +529,7 @@ function App() {
                 <label>
                   <input
                     type="checkbox"
+                    className="grab-cursor"
                     style={{ marginRight: "10px" }}
                     checked={selectedRatings.includes("2")}
                     onChange={() => handleRatingFilterChange("2")}
@@ -527,6 +540,7 @@ function App() {
                 <label>
                   <input
                     type="checkbox"
+                    className="grab-cursor"
                     style={{ marginRight: "10px" }}
                     checked={selectedRatings.includes("1")}
                     onChange={() => handleRatingFilterChange("1")}
