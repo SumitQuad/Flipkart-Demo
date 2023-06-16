@@ -33,6 +33,7 @@ function App() {
       delivery: "Free Delivery By Today",
       images: imageone,
       imagestwo: fassured,
+      Familysize: "Large Families",
       item: "new",
       reviews: "5458 rating and 261 reviews"
     },
@@ -48,6 +49,7 @@ function App() {
       delivery: "Free Delivery By Today",
       images: imagetwo,
       item: "new",
+      Familysize: "Family of 4",
       imagestwo: fassured,
       reviews: "5458 rating and 261 reviews"
     },
@@ -56,6 +58,7 @@ function App() {
       name: "LG 7 kg Magic Clean 5 Star Fully Automatic Top Load Washing Machine Grey  (MAGIC CLEAN 7.0 GENX GREY 5YMW)",
       price: 12290,
       brand: "LG",
+      Familysize: "Family of 3",
       originalprice: 14990,
       rating: "4.4",
       speed: "740 rpm Max Speed",
@@ -71,6 +74,7 @@ function App() {
       name: "IFB 7 kg Magic Clean 5 Star Fully Automatic Top Load Washing Machine Grey  (MAGIC CLEAN 7.0 GENX GREY 5YMW)",
       price: 14990,
       brand: "IFB",
+      Familysize: "Single Couple",
       rating: "4.5",
       item: "new",
       speed: "740 rpm Max Speed",
@@ -86,6 +90,7 @@ function App() {
       price: 6790,
       brand: "Panasonic",
       rating: "4.6",
+      Familysize: "Large Families",
       speed: "740 rpm Max Speed",
       warranty: "2 Years Comprehensive Warranty on Product and 5 Years on Prime Mover and Moto",
       delivery: "Free Delivery By Today",
@@ -99,6 +104,7 @@ function App() {
       price: 16990,
       brand: "Whirlpool",
       rating: "3.2",
+      Familysize: "Large Families",
       speed: "740 rpm Max Speed",
       warranty: "2 Years Comprehensive Warranty on Product and 5 Years on Prime Mover and Moto",
       delivery: "Free Delivery By Today",
@@ -113,6 +119,7 @@ function App() {
       brand: "Whirlpool",
       rating: "3.2",
       speed: "740 rpm Max Speed",
+      Familysize: "Large Families",
       warranty: "2 Years Comprehensive Warranty on Product and 5 Years on Prime Mover and Moto",
       delivery: "Free Delivery By Today",
       images: imagesix,
@@ -125,6 +132,7 @@ function App() {
       price: 16990,
       brand: "LG",
       rating: "2.1",
+      Familysize: "Large Families",
       speed: "740 rpm Max Speed",
       warranty: "2 Years Comprehensive Warranty on Product and 5 Years on Prime Mover and Moto",
       delivery: "Free Delivery By Today",
@@ -138,6 +146,7 @@ function App() {
       price: 16990,
       brand: "IFB",
       rating: "1.2",
+      Familysize: "Large Families",
       speed: "740 rpm Max Speed",
       warranty: "2 Years Comprehensive Warranty on Product and 5 Years on Prime Mover and Moto",
       delivery: "Free Delivery By Today",
@@ -158,6 +167,7 @@ function App() {
   const [selectedRatings, setSelectedRatings] = useState([]);
   const [showDiscounted, setShowDiscounted] = useState(false);
   const [selectedBrands, setSelectedBrands] = useState([]);
+  const [selectedFamilySizes, setSelectedFamilySizes] = useState([]);
 
 
 
@@ -177,6 +187,15 @@ function App() {
       setSelectedBrands([...selectedBrands, brand]);
     }
   };
+
+  const handleFamilySizeFilterChange = (familySize) => {
+    if (selectedFamilySizes.includes(familySize)) {
+      setSelectedFamilySizes(selectedFamilySizes.filter((size) => size !== familySize));
+    } else {
+      setSelectedFamilySizes([...selectedFamilySizes, familySize]);
+    }
+  };
+
 
 
   const calculateDiscountPercentage = (actualPrice, originalPrice) => {
@@ -215,6 +234,12 @@ function App() {
 
         updatedList = updatedList.filter((data) =>
           parseInt(data.rating.charAt(0)) >= selectedRatingValue
+        );
+      }
+
+      if (selectedFamilySizes.length > 0) {
+        updatedList = updatedList.filter((data) =>
+          selectedFamilySizes.includes(data.Familysize)
         );
       }
     }
@@ -267,7 +292,7 @@ function App() {
 
   useEffect(() => {
     applyFilter();
-  }, [minValue, maxValue, selectedRatings, selectedBrands]);
+  }, [minValue, maxValue, selectedRatings, selectedBrands, selectedFamilySizes]);
 
 
   return (
@@ -318,25 +343,50 @@ function App() {
               <div style={{ marginTop: "20px" }}>
                 <h6>Ideal For Family Size</h6>
                 <label>
-                  <input type="checkbox" style={{ marginRight: "10px" }} />
+                  <input
+                    type="checkbox"
+                    style={{ marginRight: "10px" }}
+                    checked={selectedFamilySizes.includes("Large Families")}
+                    onChange={() => handleFamilySizeFilterChange("Large Families")}
+                  />
                   Large Families
-                </label> <br />
+                </label>
+                <br />
 
                 <label>
-                  <input type="checkbox" style={{ marginRight: "10px" }} />
+                  <input
+                    type="checkbox"
+                    style={{ marginRight: "10px" }}
+                    checked={selectedFamilySizes.includes("Family of 4")}
+                    onChange={() => handleFamilySizeFilterChange("Family of 4")}
+                  />
                   Family of 4
-                </label> <br />
+                </label>
+                <br />
 
                 <label>
-                  <input type="checkbox" style={{ marginRight: "10px" }} />
+                  <input
+                    type="checkbox"
+                    style={{ marginRight: "10px" }}
+                    checked={selectedFamilySizes.includes("Family of 3")}
+                    onChange={() => handleFamilySizeFilterChange("Family of 3")}
+                  />
                   Family of 3
-                </label> <br />
+                </label>
+                <br />
 
                 <label>
-                  <input type="checkbox" style={{ marginRight: "10px" }} />
+                  <input
+                    type="checkbox"
+                    style={{ marginRight: "10px" }}
+                    checked={selectedFamilySizes.includes("Single Couple")}
+                    onChange={() => handleFamilySizeFilterChange("Single Couple")}
+                  />
                   Single Couple
-                </label> <br />
+                </label>
+                <br />
               </div>
+
 
               <div style={{ marginTop: "40px" }}>
                 <h6>Brand</h6>
@@ -490,6 +540,7 @@ function App() {
                             <li>{wash.speed}</li>
                             <li>{wash.warranty}</li>
                             <li>{wash.delivery}</li>
+                            <li>{wash.Familysize}</li>
                           </ul>
                         </Col>
                         <Col lg={2}>
