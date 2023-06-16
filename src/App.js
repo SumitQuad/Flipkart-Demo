@@ -352,7 +352,7 @@ function App() {
                     {minValue === '' ? (
                       <option value="">{minValue}</option>
                     ) : (
-                      <option value="0">0</option>
+                      <option value="0">{minValue}</option>
                     )}
                     <option value="5000">5000</option>
                     <option value="10000">10000</option>
@@ -365,7 +365,7 @@ function App() {
                     {maxValue === '' ? (
                       <option value="">{maxValue}</option>
                     ) : (
-                      <></>
+                      <option value="30000">{maxValue}</option>
                     )}
                     <option value="15000">15000</option>
                     <option value="20000">20000</option>
