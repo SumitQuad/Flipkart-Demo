@@ -104,6 +104,12 @@ button {
   cursor: pointer;
 }
 
+/* range clear */
+
+.range-clear {
+  margin-bottom: 10px;
+}
+
 /* Media query for smaller screens */
 @media (max-width: 767px) {
 

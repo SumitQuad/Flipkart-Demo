@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import './App.css';
 import imageone from "./images/washingmachine1.webp";
 import imagetwo from "./images/washingmachine2.webp";
@@ -11,10 +11,7 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Stack from 'react-bootstrap/Stack';
 import { Range } from "react-range";
-import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
 
 
 
@@ -351,9 +348,24 @@ function App() {
         <Row>
           <Col lg={3}>
             <Card className="card-input">
-
               <h3>Filters</h3>
               <hr />
+
+              <div className="range-clear">
+                {minValue !== 0 && maxValue !== 0 && (
+                  <div className="button-container">
+                    <button>
+                      {minValue} - {maxValue}
+                    </button>
+                    <button className="close-button" onClick={() => {
+                      setMinValue(0);
+                      setMaxValue(30000);
+                    }}>
+                      X
+                    </button>
+                  </div>
+                )}
+              </div>
 
               <h6>Price</h6>
               <div>
