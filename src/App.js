@@ -149,12 +149,11 @@ function App() {
   const [value, setValue] = React.useState([0, 30000]);
   const [selectedRatings, setSelectedRatings] = useState([]);
   const [showDiscounted, setShowDiscounted] = useState(false);
-  const [values, setValues] = useState([0, 30000]);
 
 
   const handleRatingFilterChange = (rating) => {
     if (selectedRatings.includes(rating)) {
-      setSelectedRatings(selectedRatings.filter((r) => r !== rating && r < rating));
+      setSelectedRatings(selectedRatings.filter((r) => r !== rating));
     } else {
       setSelectedRatings([...selectedRatings, rating]);
     }
@@ -186,10 +185,14 @@ function App() {
       }
 
       if (selectedRatings.length > 0) {
+        const selectedRatingValue = Math.min(...selectedRatings.map((rating) => parseInt(rating)));
+
         updatedList = updatedList.filter((data) =>
-          selectedRatings.includes(data.rating.charAt(0))
+          parseInt(data.rating.charAt(0)) >= selectedRatingValue
         );
       }
+
+
     }
 
     setFilteredWashingMachines(updatedList);
