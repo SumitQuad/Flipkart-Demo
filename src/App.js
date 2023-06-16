@@ -196,6 +196,14 @@ function App() {
     }
   };
 
+  const handleMinValueChange = (event) => {
+    setMinValue(event.target.value);
+  };
+
+  const handleMaxValueChange = (event) => {
+    setMaxValue(event.target.value);
+  };
+
 
 
   const calculateDiscountPercentage = (actualPrice, originalPrice) => {
@@ -284,8 +292,8 @@ function App() {
   };
 
   const handleChange = (values) => {
-    setMinValue(values[0]);
-    setMaxValue(values[1]);
+    setMinValue(values[0].toString());
+    setMaxValue(values[1].toString());
   };
 
 
@@ -304,6 +312,8 @@ function App() {
 
               <h3>Filters</h3>
               <hr />
+
+              <h6>Price</h6>
               <div>
                 <Range
                   values={[minValue, maxValue]}
@@ -337,7 +347,25 @@ function App() {
                     />
                   )}
                 />
-                <p className="range-text">Min: {minValue} - Max: {maxValue}</p>
+                <div className="mt-4" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                  <select value={minValue} onChange={handleMinValueChange} style={{ width: '100px' }}>
+                    <option value="">{minValue}</option>
+                    <option value="5000">5000</option>
+                    <option value="10000">10000</option>
+                    <option value="15000">15000</option>
+                  </select>
+
+                  <p>To</p>
+
+                  <select value={maxValue} onChange={handleMaxValueChange} style={{ width: '100px' }}>
+                    <option value="">{maxValue}</option>
+                    <option value="20000">20000</option>
+                    <option value="25000">25000</option>
+                    <option value="30000">30000</option>
+                  </select>
+                </div>
+
+                {/* <p className="range-text">Min: {minValue} - Max: {maxValue}</p> */}
               </div>
 
               <div style={{ marginTop: "20px" }}>
