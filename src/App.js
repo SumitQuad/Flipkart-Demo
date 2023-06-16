@@ -154,6 +154,48 @@ function App() {
       imagestwo: fassured,
       reviews: "5458 rating and 261 reviews"
     },
+    {
+      id: 10,
+      name: "IFB 7 kg Magic Clean 5 Star Fully Automatic Top Load Washing Machine Grey  (MAGIC CLEAN 7.0 GENX GREY 5YMW)",
+      price: 26990,
+      brand: "IFB",
+      rating: "1.2",
+      Familysize: "Large Families",
+      speed: "740 rpm Max Speed",
+      warranty: "2 Years Comprehensive Warranty on Product and 5 Years on Prime Mover and Moto",
+      delivery: "Free Delivery By Today",
+      images: imagesix,
+      imagestwo: fassured,
+      reviews: "5458 rating and 261 reviews"
+    },
+    {
+      id: 11,
+      name: "IFB 7 kg Magic Clean 5 Star Fully Automatic Top Load Washing Machine Grey  (MAGIC CLEAN 7.0 GENX GREY 5YMW)",
+      price: 20000,
+      brand: "IFB",
+      rating: "1.2",
+      Familysize: "Large Families",
+      speed: "740 rpm Max Speed",
+      warranty: "2 Years Comprehensive Warranty on Product and 5 Years on Prime Mover and Moto",
+      delivery: "Free Delivery By Today",
+      images: imagesix,
+      imagestwo: fassured,
+      reviews: "5458 rating and 261 reviews"
+    },
+    {
+      id: 13,
+      name: "IFB 7 kg Magic Clean 5 Star Fully Automatic Top Load Washing Machine Grey  (MAGIC CLEAN 7.0 GENX GREY 5YMW)",
+      price: 30000,
+      brand: "IFB",
+      rating: "1.2",
+      Familysize: "Large Families",
+      speed: "740 rpm Max Speed",
+      warranty: "2 Years Comprehensive Warranty on Product and 5 Years on Prime Mover and Moto",
+      delivery: "Free Delivery By Today",
+      images: imagesix,
+      imagestwo: fassured,
+      reviews: "5458 rating and 261 reviews"
+    },
   ]
 
   const [minValue, setMinValue] = useState(0);
@@ -354,6 +396,9 @@ function App() {
                       <option value="5000">5000</option>
                       <option value="10000">10000</option>
                       <option value="15000">15000</option>
+                      <option value="20000">20000</option>
+                      <option value="25000">25000</option>
+                      <option value="30000">30000</option>
                     </select>
                   ) : (
                     <select value={minValue} onChange={handleMinValueChange} style={{ width: '100px' }}>
@@ -361,6 +406,9 @@ function App() {
                       <option value="5000">5000</option>
                       <option value="10000">10000</option>
                       <option value="15000">15000</option>
+                      <option value="20000">20000</option>
+                      <option value="25000">25000</option>
+                      <option value="30000">30000</option>
                     </select>
                   )}
 
@@ -372,6 +420,8 @@ function App() {
                     ) : (
                       <option value="30000">{maxValue ? "MaxValue" : ""}</option>
                     )}
+                    <option value="5000">5000</option>
+                    <option value="10000">10000</option>
                     <option value="15000">15000</option>
                     <option value="20000">20000</option>
                     <option value="25000">25000</option>
