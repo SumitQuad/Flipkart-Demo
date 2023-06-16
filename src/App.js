@@ -349,7 +349,7 @@ function App() {
                 />
                 <div className="mt-4" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                   <select value={minValue} onChange={handleMinValueChange} style={{ width: '100px' }}>
-                    <option value="">{minValue}</option>
+                    <option value="0">0</option>
                     <option value="5000">5000</option>
                     <option value="10000">10000</option>
                     <option value="15000">15000</option>
@@ -358,7 +358,6 @@ function App() {
                   <p>To</p>
 
                   <select value={maxValue} onChange={handleMaxValueChange} style={{ width: '100px' }}>
-                    <option value="">{maxValue}</option>
                     <option value="20000">20000</option>
                     <option value="25000">25000</option>
                     <option value="30000">30000</option>
