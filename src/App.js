@@ -348,24 +348,29 @@ function App() {
                   )}
                 />
                 <div className="mt-4" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                  <select value={minValue} onChange={handleMinValueChange} style={{ width: '100px' }}>
-                    {minValue === '' ? (
-                      <option value="">{minValue}</option>
-                    ) : (
-                      <option value="0">{minValue}</option>
-                    )}
-                    <option value="5000">5000</option>
-                    <option value="10000">10000</option>
-                    <option value="15000">15000</option>
-                  </select>
+                  {minValue === '' ? (
+                    <select value={minValue} onChange={handleMinValueChange} style={{ width: '100px' }}>
+                      <option value="">&#10003; Min</option>
+                      <option value="5000">5000</option>
+                      <option value="10000">10000</option>
+                      <option value="15000">15000</option>
+                    </select>
+                  ) : (
+                    <select value={minValue} onChange={handleMinValueChange} style={{ width: '100px' }}>
+                      <option value="0">Min</option>
+                      <option value="5000">5000</option>
+                      <option value="10000">10000</option>
+                      <option value="15000">15000</option>
+                    </select>
+                  )}
 
                   <p>To</p>
 
                   <select value={maxValue} onChange={handleMaxValueChange} style={{ width: '100px' }}>
                     {maxValue === '' ? (
-                      <option value="">{maxValue}</option>
+                      <option value="">&#10003; MaxValue</option>
                     ) : (
-                      <option value="30000">{maxValue}</option>
+                      <option value="30000">{maxValue ? "MaxValue" : ""}</option>
                     )}
                     <option value="15000">15000</option>
                     <option value="20000">20000</option>
