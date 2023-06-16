@@ -317,7 +317,7 @@ function App() {
               <div>
                 <Range
                   values={[minValue, maxValue]}
-                  step={1000}
+                  step={5000}
                   min={0}
                   max={30000}
                   onChange={handleChange}
