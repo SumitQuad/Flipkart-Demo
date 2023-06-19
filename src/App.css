@@ -110,6 +110,16 @@ button {
   margin-bottom: 10px;
 }
 
+.sticky-column {
+  position: sticky;
+  top: 10px;
+  /* Adjust the value as per your requirement */
+  height: calc(100vh - 20px);
+  /* Adjust the value as per your layout */
+  overflow-y: auto;
+}
+
+
 /* Media query for smaller screens */
 @media (max-width: 767px) {
 
@@ -129,6 +139,7 @@ button {
   .price-container p {
     margin-right: 10px;
   }
+
 }
 
 /* Styling for slider container */
