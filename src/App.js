@@ -17,7 +17,7 @@ import { Range } from "react-range";
 
 function App() {
 
-  const washingmachine = [
+  const data = [
     {
       id: 1,
       name: "Whirlpool 7 kg Magic Clean 5 Star Fully Automatic Top Load Washing Machine Grey  (MAGIC CLEAN 7.0 GENX GREY 5YMW)",
@@ -197,7 +197,7 @@ function App() {
 
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(30000);
-  const [filteredWashingMachines, setFilteredWashingMachines] = useState(washingmachine);
+  const [filteredWashingMachines, setFilteredWashingMachines] = useState(data);
   const [sortedWashingMachines, setSortedWashingMachines] = useState([]);
   const [filterpopularity, setFilterPopularity] = useState([]);
 
@@ -257,7 +257,7 @@ function App() {
 
 
   const applyFilter = () => {
-    let updatedList = washingmachine;
+    let updatedList = data;
 
     if (showDiscounted) {
       updatedList = updatedList.filter(
@@ -265,7 +265,7 @@ function App() {
       );
     } else {
       if (minValue && maxValue) {
-        updatedList = washingmachine.filter(
+        updatedList = data.filter(
           (data) => data.price >= minValue && data.price <= maxValue
         );
       }
