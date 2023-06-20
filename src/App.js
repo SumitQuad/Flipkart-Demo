@@ -19,31 +19,13 @@ function App() {
   const [activeSort, setActiveSort] = useState("popularity");
   const [selectedRatings, setSelectedRatings] = useState([]);
   const [showDiscounted, setShowDiscounted] = useState(false);
-  const [selectedBrands, setSelectedBrands] = useState([]);
-  const [selectedFamilySizes, setSelectedFamilySizes] = useState([]);
+
 
   const handleRatingFilterChange = (rating) => {
     if (selectedRatings.includes(rating)) {
       setSelectedRatings(selectedRatings.filter((r) => r !== rating));
     } else {
       setSelectedRatings([...selectedRatings, rating]);
-    }
-  };
-
-  const handleBrandFilterChange = (brand) => {
-    if (selectedBrands.includes(brand)) {
-      setSelectedBrands(selectedBrands.filter((b) => b !== brand));
-    }
-    else {
-      setSelectedBrands([...selectedBrands, brand]);
-    }
-  };
-
-  const handleFamilySizeFilterChange = (familySize) => {
-    if (selectedFamilySizes.includes(familySize)) {
-      setSelectedFamilySizes(selectedFamilySizes.filter((size) => size !== familySize));
-    } else {
-      setSelectedFamilySizes([...selectedFamilySizes, familySize]);
     }
   };
 
@@ -78,23 +60,11 @@ function App() {
         );
       }
 
-      if (selectedBrands.length > 0) {
-        updatedList = updatedList.filter((data) =>
-          selectedBrands.includes(data.brand)
-        );
-      }
-
       if (selectedRatings.length > 0) {
         const selectedRatingValue = Math.min(...selectedRatings.map((rating) => parseInt(rating)));
 
         updatedList = updatedList.filter((data) =>
           parseInt(data.rating.charAt(0)) >= selectedRatingValue
-        );
-      }
-
-      if (selectedFamilySizes.length > 0) {
-        updatedList = updatedList.filter((data) =>
-          selectedFamilySizes.includes(data.Familysize)
         );
       }
     }
@@ -143,7 +113,7 @@ function App() {
 
   useEffect(() => {
     applyFilter();
-  }, [minValue, maxValue, selectedRatings, selectedBrands, selectedFamilySizes]);
+  }, [minValue, maxValue, selectedRatings]);
 
   return (
     <div className="App">
