@@ -33,15 +33,6 @@ function App() {
     setMaxValue(event.target.value);
   };
 
-  const calculateDiscountPercentage = (actualPrice, originalPrice) => {
-    if (originalPrice) {
-      const discount = originalPrice - actualPrice;
-      const discountPercentage = (discount / originalPrice) * 100;
-      return Math.round(discountPercentage);
-    }
-    return null;
-  };
-
   const applyFilter = () => {
     let updatedList = data;
 
@@ -66,9 +57,10 @@ function App() {
         );
       }
     }
-
     setFilteredWashingMachines(updatedList);
   };
+
+  const totalProducts = filteredWashingMachines.length;
 
   const handleChange = (values) => {
     setMinValue(values[0].toString());
@@ -111,7 +103,7 @@ function App() {
               <h3 className="card-heading">
                 Washing Machines{" "}
                 <span>
-                  (Showing 1 – 13 products of {data.length} products)
+                  (Showing 1 – {filteredWashingMachines.length} products of {totalProducts} products)
                 </span>
               </h3>
               <div className="sort-container">
@@ -130,7 +122,7 @@ function App() {
           </Col>
         </Row>
       </Container>
-    </div>
+    </div >
   );
 }
 
