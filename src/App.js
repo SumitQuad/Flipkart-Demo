@@ -5,77 +5,48 @@ import WashingMachineList from "./Components/WashingCardDetails/washingcarddetai
 import RangeSlider from "./Components/Filters/RangeSlider/RangeSlider";
 import SortBySection from "./Components/Sorting/SortBySection/SortBySection";
 import data from "./Data/data.json";
-import Card from "react-bootstrap/Card";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { Card, Container, Row, Col } from "react-bootstrap";
 
 function App() {
+
   // State variables
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(30000);
   const [filteredWashingMachines, setFilteredWashingMachines] = useState(data);
   const [selectedRatings, setSelectedRatings] = useState([]);
-  const [showDiscounted, setShowDiscounted] = useState(false);
 
-  // Event handlers
-  const handleRatingFilterChange = (rating) => {
-    if (selectedRatings.includes(rating)) {
-      setSelectedRatings(selectedRatings.filter((r) => r !== rating));
-    } else {
-      setSelectedRatings([...selectedRatings, rating]);
-    }
-  };
 
-  const handleMinValueChange = (event) => {
-    setMinValue(event.target.value);
-  };
-
-  const handleMaxValueChange = (event) => {
-    setMaxValue(event.target.value);
-  };
-
-  // Apply filter based on selected options
   const applyFilter = () => {
+    // Initialize the updated list with the original data
     let updatedList = data;
 
-    if (showDiscounted) {
-      updatedList = updatedList.filter(
-        (wash) => wash.originalprice > wash.price
+    if (minValue && maxValue) {
+      updatedList = data.filter(
+        (item) => item.price >= minValue && item.price <= maxValue
       );
-    } else {
-      if (minValue && maxValue) {
-        updatedList = data.filter(
-          (data) => data.price >= minValue && data.price <= maxValue
-        );
-      }
+    }
 
-      if (selectedRatings.length > 0) {
-        const selectedRatingValue = Math.min(
-          ...selectedRatings.map((rating) => parseInt(rating))
-        );
+    if (selectedRatings.length > 0) {
+      const selectedRatingValue = Math.min(
+        ...selectedRatings.map((rating) => parseInt(rating))
+      );
 
-        updatedList = updatedList.filter(
-          (data) => parseInt(data.rating.charAt(0)) >= selectedRatingValue
-        );
-      }
+      updatedList = updatedList.filter(
+        (item) => parseInt(item.rating.charAt(0)) >= selectedRatingValue
+      );
     }
     setFilteredWashingMachines(updatedList);
   };
 
   const totalProducts = filteredWashingMachines.length;
 
-  const handleChange = (values) => {
-    setMinValue(values[0].toString());
-    setMaxValue(values[1].toString());
-  };
-
+  // Clear all filters
   const handleClearFilters = () => {
     setMinValue(0);
     setMaxValue(30000);
     setSelectedRatings([]);
-    setShowDiscounted(false);
   };
+
 
   // Apply filter when inputs change
   useEffect(() => {
@@ -98,18 +69,18 @@ function App() {
                 <RangeSlider
                   minValue={minValue}
                   maxValue={maxValue}
-                  handleMinValueChange={handleMinValueChange}
-                  handleMaxValueChange={handleMaxValueChange}
-                  handleChange={handleChange}
+                  setMinValue={setMinValue}
+                  setMaxValue={setMaxValue}
                 />
+
               </div>
-              <>
-                {/* Customer rating filter component */}
-                <CustomerRatingFilter
-                  selectedRatings={selectedRatings}
-                  handleRatingFilterChange={handleRatingFilterChange}
-                />
-              </>
+
+              {/* Customer rating filter component */}
+              <CustomerRatingFilter
+                selectedRatings={selectedRatings}
+                setSelectedRatings={setSelectedRatings}
+              />
+
               {/* Clear Filters button */}
               <button className="mt-4" onClick={handleClearFilters}>
                 Clear Filters
@@ -117,15 +88,12 @@ function App() {
             </Card>
           </Col>
 
+
           {/* Washing machine list */}
           <Col lg={9}>
             <Card className="p-2">
               <h3 className="card-heading">
-                Washing Machines{" "}
-                <span>
-                  (Showing 1 – {filteredWashingMachines.length} products of{" "}
-                  {totalProducts} products)
-                </span>
+                Washing Machines (Showing 1 – {filteredWashingMachines.length} products of {totalProducts} products)
               </h3>
               <div className="sort-container">
                 {/* Sort by section */}
@@ -137,9 +105,7 @@ function App() {
 
               <Container>
                 {/* Washing machine list component */}
-                <WashingMachineList
-                  washingMachines={filteredWashingMachines}
-                />
+                <WashingMachineList washingMachines={filteredWashingMachines} />
               </Container>
             </Card>
           </Col>
