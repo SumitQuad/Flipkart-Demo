@@ -11,12 +11,14 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 function App() {
+  // State variables
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(30000);
   const [filteredWashingMachines, setFilteredWashingMachines] = useState(data);
   const [selectedRatings, setSelectedRatings] = useState([]);
   const [showDiscounted, setShowDiscounted] = useState(false);
 
+  // Event handlers
   const handleRatingFilterChange = (rating) => {
     if (selectedRatings.includes(rating)) {
       setSelectedRatings(selectedRatings.filter((r) => r !== rating));
@@ -33,6 +35,7 @@ function App() {
     setMaxValue(event.target.value);
   };
 
+  // Apply filter based on selected options
   const applyFilter = () => {
     let updatedList = data;
 
@@ -67,6 +70,14 @@ function App() {
     setMaxValue(values[1].toString());
   };
 
+  const handleClearFilters = () => {
+    setMinValue(0);
+    setMaxValue(30000);
+    setSelectedRatings([]);
+    setShowDiscounted(false);
+  };
+
+  // Apply filter when inputs change
   useEffect(() => {
     applyFilter();
   }, [minValue, maxValue, selectedRatings]);
@@ -75,6 +86,7 @@ function App() {
     <div className="App">
       <Container fluid className="mt-2">
         <Row>
+          {/* Filter section */}
           <Col lg={3} className="sticky-column">
             <Card className="card-input">
               <h3>Filters</h3>
@@ -82,6 +94,7 @@ function App() {
 
               <h6>Price</h6>
               <div>
+                {/* Range slider component */}
                 <RangeSlider
                   minValue={minValue}
                   maxValue={maxValue}
@@ -91,22 +104,31 @@ function App() {
                 />
               </div>
               <>
+                {/* Customer rating filter component */}
                 <CustomerRatingFilter
                   selectedRatings={selectedRatings}
                   handleRatingFilterChange={handleRatingFilterChange}
                 />
               </>
+              {/* Clear Filters button */}
+              <button className="mt-4" onClick={handleClearFilters}>
+                Clear Filters
+              </button>
             </Card>
           </Col>
+
+          {/* Washing machine list */}
           <Col lg={9}>
             <Card className="p-2">
               <h3 className="card-heading">
                 Washing Machines{" "}
                 <span>
-                  (Showing 1 – {filteredWashingMachines.length} products of {totalProducts} products)
+                  (Showing 1 – {filteredWashingMachines.length} products of{" "}
+                  {totalProducts} products)
                 </span>
               </h3>
               <div className="sort-container">
+                {/* Sort by section */}
                 <SortBySection
                   filteredWashingMachines={filteredWashingMachines}
                   setFilteredWashingMachines={setFilteredWashingMachines}
@@ -114,6 +136,7 @@ function App() {
               </div>
 
               <Container>
+                {/* Washing machine list component */}
                 <WashingMachineList
                   washingMachines={filteredWashingMachines}
                 />
@@ -122,7 +145,7 @@ function App() {
           </Col>
         </Row>
       </Container>
-    </div >
+    </div>
   );
 }
 
