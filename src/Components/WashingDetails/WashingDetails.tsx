@@ -41,60 +41,65 @@ const WashingDetails = ({ washingMachines }: any) => {
     const totalPages: number = Math.ceil(washingMachines.length / itemsPerPage);
     const pageNumbers: number[] = Array.from({ length: totalPages }, (_, index) => index + 1);
 
+
     return (
         <div>
-            {currentItems.map((wash) => {
-                const discountPercentage: number = calculateDiscountPercentage(
-                    wash.price,
-                    wash.originalprice
-                );
-                return (
-                    <div key={wash.id}>
-                        <Container>
-                            <Row>
-                                <Col lg={3} className="image-container">
-                                    <img src={wash.images} alt="washingmachine" />
-                                </Col>
-                                <Col lg={4}>
-                                    <h5>{wash.name}</h5>
-                                    <div className="button-paragraph-container">
-                                        <button>{wash.rating}</button>
-                                        <p>{wash.reviews}</p>
-                                    </div>
-                                    <ul className="mt-3">
-                                        <li>{wash.speed}</li>
-                                        <li>{wash.warranty}</li>
-                                        <li>{wash.delivery}</li>
-                                        <li>{wash.Familysize}</li>
-                                    </ul>
-                                </Col>
-                                <Col lg={2}>
-                                    <h4>{wash.price}</h4>
-                                    <div className="price-container">
-                                        <p>
-                                            <del>{wash.originalprice}</del>
+            {currentItems.length === 0 ? (
+                <div style={{ textAlign: "center", fontSize: "40px" }}>No data available</div>
+            ) : (
+                currentItems.map((wash) => {
+                    const discountPercentage: number = calculateDiscountPercentage(
+                        wash.price,
+                        wash.originalprice
+                    );
+                    return (
+                        <div key={wash.id}>
+                            <Container>
+                                <Row>
+                                    <Col lg={3} className="image-container">
+                                        <img src={wash.images} alt="washingmachine" />
+                                    </Col>
+                                    <Col lg={4}>
+                                        <h5>{wash.name}</h5>
+                                        <div className="button-paragraph-container">
+                                            <button>{wash.rating}</button>
+                                            <p>{wash.reviews}</p>
+                                        </div>
+                                        <ul className="mt-3">
+                                            <li>{wash.speed}</li>
+                                            <li>{wash.warranty}</li>
+                                            <li>{wash.delivery}</li>
+                                            <li>{wash.Familysize}</li>
+                                        </ul>
+                                    </Col>
+                                    <Col lg={2}>
+                                        <h4>{wash.price}</h4>
+                                        <div className="price-container">
+                                            <p>
+                                                <del>{wash.originalprice}</del>
+                                            </p>
+                                            {discountPercentage && (
+                                                <p className="discount-percentage">{discountPercentage}% off</p>
+                                            )}
+                                        </div>
+                                        <p style={{ fontSize: "12px" }}>Free Delivery By Today</p>
+                                        <p style={{ fontSize: "12px", lineHeight: "5px", color: "green" }}>
+                                            Saver Deal
                                         </p>
-                                        {discountPercentage && (
-                                            <p className="discount-percentage">{discountPercentage}% off</p>
-                                        )}
-                                    </div>
-                                    <p style={{ fontSize: "12px" }}>Free Delivery By Today</p>
-                                    <p style={{ fontSize: "12px", lineHeight: "5px", color: "green" }}>
-                                        Saver Deal
-                                    </p>
-                                    <p style={{ fontSize: "12px", fontWeight: "bold" }}>
-                                        Upto 2200 off on Exchange
-                                    </p>
-                                </Col>
-                                <Col lg={3}>
-                                    <img src={wash.imagestwo} alt="fassured" />
-                                </Col>
-                            </Row>
-                            <hr />
-                        </Container>
-                    </div>
-                );
-            })}
+                                        <p style={{ fontSize: "12px", fontWeight: "bold" }}>
+                                            Upto 2200 off on Exchange
+                                        </p>
+                                    </Col>
+                                    <Col lg={3}>
+                                        <img src={wash.imagestwo} alt="fassured" />
+                                    </Col>
+                                </Row>
+                                <hr />
+                            </Container>
+                        </div>
+                    );
+                })
+            )}
 
             <div className="pagination">
                 {pageNumbers.map((pageNumber) => (
@@ -108,6 +113,7 @@ const WashingDetails = ({ washingMachines }: any) => {
                 ))}
             </div>
         </div>
+
     );
 };
 
