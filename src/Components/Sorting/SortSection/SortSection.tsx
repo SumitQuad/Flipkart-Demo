@@ -6,42 +6,37 @@ const SortSection = ({
 }: any) => {
     const [activeSort, setActiveSort] = useState<string>("popularity");
 
-    const sortLowToHigh = () => {
-        const sortedList = [...filteredWashingMachines].sort(
-            (a, b) => a.price - b.price
-        );
-        setFilteredWashingMachines(sortedList);
-        setActiveSort("lowToHigh");
-    };
+    const sortWashingMachines = (sortType: string) => {
+        let sortedList;
 
-    const sortHighToLow = () => {
-        const sortedList = [...filteredWashingMachines].sort(
-            (a, b) => b.price - a.price
-        );
-        setFilteredWashingMachines(sortedList);
-        setActiveSort("highToLow");
-    };
+        if (sortType === "lowToHigh") {
+            sortedList = [...filteredWashingMachines].sort(
+                (a, b) => a.price - b.price
+            );
+        } else if (sortType === "highToLow") {
+            sortedList = [...filteredWashingMachines].sort(
+                (a, b) => b.price - a.price
+            );
+        } else if (sortType === "popularity") {
+            sortedList = [...filteredWashingMachines].sort((a, b) => {
+                const ratingA = parseFloat(a.rating);
+                const ratingB = parseFloat(b.rating);
+                return ratingB - ratingA;
+            });
+        } else if (sortType === "discount") {
+            sortedList = [...filteredWashingMachines].sort((a, b) => {
+                const discountPercentageA =
+                    calculateDiscountPercentage(a.price, a.originalprice) || 0;
+                const discountPercentageB =
+                    calculateDiscountPercentage(b.price, b.originalprice) || 0;
+                return discountPercentageB - discountPercentageA;
+            });
+        } else {
+            return;
+        }
 
-    const handleSortOnPopularity = () => {
-        const sortedList = [...filteredWashingMachines].sort((a, b) => {
-            const ratingA = parseFloat(a.rating);
-            const ratingB = parseFloat(b.rating);
-            return ratingB - ratingA;
-        });
         setFilteredWashingMachines(sortedList);
-        setActiveSort("popularity");
-    };
-
-    const sortDiscounted = () => {
-        const sortedList = [...filteredWashingMachines].sort((a, b) => {
-            const discountPercentageA =
-                calculateDiscountPercentage(a.price, a.originalprice) || 0;
-            const discountPercentageB =
-                calculateDiscountPercentage(b.price, b.originalprice) || 0;
-            return discountPercentageB - discountPercentageA;
-        });
-        setFilteredWashingMachines(sortedList);
-        setActiveSort("discount");
+        setActiveSort(sortType);
     };
 
     const calculateDiscountPercentage = (
@@ -63,7 +58,7 @@ const SortSection = ({
                 className={
                     activeSort === "popularity" ? "active-paragraph grab-cursor" : "grab-cursor"
                 }
-                onClick={handleSortOnPopularity}
+                onClick={() => sortWashingMachines("popularity")}
             >
                 Popularity
             </p>
@@ -71,7 +66,7 @@ const SortSection = ({
                 className={
                     activeSort === "lowToHigh" ? "active-paragraph grab-cursor" : "grab-cursor"
                 }
-                onClick={sortLowToHigh}
+                onClick={() => sortWashingMachines("lowToHigh")}
             >
                 Price Low To High
             </p>
@@ -79,7 +74,7 @@ const SortSection = ({
                 className={
                     activeSort === "highToLow" ? "active-paragraph grab-cursor" : "grab-cursor"
                 }
-                onClick={sortHighToLow}
+                onClick={() => sortWashingMachines("highToLow")}
             >
                 Price High To Low
             </p>
@@ -87,7 +82,7 @@ const SortSection = ({
                 className={
                     activeSort === "discount" ? "active-paragraph grab-cursor" : "grab-cursor"
                 }
-                onClick={sortDiscounted}
+                onClick={() => sortWashingMachines("discount")}
             >
                 Discount
             </p>
