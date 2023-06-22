@@ -29,6 +29,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
   };
 
   const minOptions = [
+    { value: "0", label: "0" },
     { value: "5000", label: "5000" },
     { value: "10000", label: "10000" },
     { value: "15000", label: "15000" },
@@ -38,12 +39,12 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
   ];
 
   const maxOptions = [
-    { value: "30000", label: maxValue ? "MaxValue" : "" },
     { value: "5000", label: "5000" },
     { value: "10000", label: "10000" },
     { value: "15000", label: "15000" },
     { value: "20000", label: "20000" },
     { value: "25000", label: "25000" },
+    { value: "30000", label: maxValue ? "30000" : "" },
   ];
 
   return (
