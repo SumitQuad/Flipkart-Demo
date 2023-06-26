@@ -61,17 +61,17 @@ const SortSection = ({
     return (
         <div className="sort-container">
             <p>Sort By</p>
-            <p>
+            <div className="sort-container">
                 {options.map(option => (
-                    <span
+                    <p
                         key={option.value}
                         className={activeSort === option.value ? "active-paragraph grab-cursor" : "grab-cursor"}
                         onClick={() => sortWashingMachines(option.value)}
                     >
                         {option.label}
-                    </span>
+                    </p>
                 ))}
-            </p>
+            </div>
         </div>
     );
 };
