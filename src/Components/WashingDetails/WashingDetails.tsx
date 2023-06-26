@@ -45,7 +45,7 @@ const WashingDetails = ({ washingMachines }: any) => {
     return (
         <div>
             {currentItems.length === 0 ? (
-                <div style={{ textAlign: "center", fontSize: "40px" }}>No data available</div>
+                <div style={{ textAlign: "center", fontSize: "40px" }}>No Products available</div>
             ) : (
                 currentItems.map((wash) => {
                     const discountPercentage: number = calculateDiscountPercentage(

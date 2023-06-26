@@ -6,6 +6,13 @@ const SortSection = ({
 }: any) => {
     const [activeSort, setActiveSort] = useState<string>("popularity");
 
+    const options = [
+        { label: "Popularity", value: "popularity" },
+        { label: "Price Low To High", value: "lowToHigh" },
+        { label: "Price High To Low", value: "highToLow" },
+        { label: "Discount", value: "discount" }
+    ];
+
     const sortWashingMachines = (sortType: string) => {
         let sortedList;
 
@@ -54,37 +61,16 @@ const SortSection = ({
     return (
         <div className="sort-container">
             <p>Sort By</p>
-            <p
-                className={
-                    activeSort === "popularity" ? "active-paragraph grab-cursor" : "grab-cursor"
-                }
-                onClick={() => sortWashingMachines("popularity")}
-            >
-                Popularity
-            </p>
-            <p
-                className={
-                    activeSort === "lowToHigh" ? "active-paragraph grab-cursor" : "grab-cursor"
-                }
-                onClick={() => sortWashingMachines("lowToHigh")}
-            >
-                Price Low To High
-            </p>
-            <p
-                className={
-                    activeSort === "highToLow" ? "active-paragraph grab-cursor" : "grab-cursor"
-                }
-                onClick={() => sortWashingMachines("highToLow")}
-            >
-                Price High To Low
-            </p>
-            <p
-                className={
-                    activeSort === "discount" ? "active-paragraph grab-cursor" : "grab-cursor"
-                }
-                onClick={() => sortWashingMachines("discount")}
-            >
-                Discount
+            <p>
+                {options.map(option => (
+                    <span
+                        key={option.value}
+                        className={activeSort === option.value ? "active-paragraph grab-cursor" : "grab-cursor"}
+                        onClick={() => sortWashingMachines(option.value)}
+                    >
+                        {option.label}
+                    </span>
+                ))}
             </p>
         </div>
     );
